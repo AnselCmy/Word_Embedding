@@ -14,7 +14,7 @@ from SkipGram import SkipGram
 class Word2Vec():
     """Main class for word2vec model
     
-    Args:
+    Attributes:
         filename:    filename of input training data
         word_num:    number of expected number of training words
         batch_size:  number of training samples in one batch
@@ -25,6 +25,7 @@ class Word2Vec():
         lr:          learning rate
         neg_cnt:     number of negative samples for one x
         outfile:     filename of output trained skip gram model 
+        dicfile:     filename of word dict for storing word dict
     """
 
     def __init__(self, filename='./text8.zip', word_num=200, 

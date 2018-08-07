@@ -6,11 +6,11 @@
 
 + The size of skip window
 
-  <img src='/Users/chen/Desktop/Skip-Gram/pic/w2v_1.png' width='50%'>
+  <img src='./pic/w2v_1.png' width='50%'>
 
 + The architecture of neural network for Word2Vec
 
-  <img src='/Users/chen/Desktop/Skip-Gram/pic/w2v_2.png' width='70%'>
+  <img src='./pic/w2v_2.png' width='70%'>
 
 + The training sets are word pairs, the training input and output are words encoded by one-hot vectors. But when you evaluate the trained network on an input word, the output vector will actually be a **probability distribution**.
 

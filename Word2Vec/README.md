@@ -1,16 +1,16 @@
-### Implementation of Skip-gram with Negative Sampling by PyTorch
+## Skip-gram with Negative Sampling by PyTorch
 
-#### Chen Mingyang | Oct. 8 2018
+### Chen Mingyang / Oct. 8 2018
 
-##### Basics 
+#### Basics
 
 + The size of skip window
 
-  <img src='./pic/w2v_1.png' width='50%'>
+  <img src='../doc_img/w2v_1.png' width='50%'>
 
 + The architecture of neural network for Word2Vec
 
-  <img src='./pic/w2v_2.png' width='70%'>
+  <img src='../doc_img/w2v_2.png' width='70%'>
 
 + The training sets are word pairs, the training input and output are words encoded by one-hot vectors. But when you evaluate the trained network on an input word, the output vector will actually be a **probability distribution**.
 
@@ -24,7 +24,7 @@
 
 + The target is $ log\sigma(v_c⋅v_w) + \sum_{w_j \in W_{negative}} log \sigma (−v_{wj}⋅v_c) $, where $(v_c, v_w)$ is the word pair.
 
- ##### Implementation
+#### Implementation
 
 1. Dataset
 
@@ -148,7 +148,7 @@
            """Start train the model and embedding"""
    ```
 
-##### Train and Test
+#### Train and Test
 
 1. Train Word2Vec 
 
@@ -163,7 +163,7 @@
    The embedding model file and word dictinary file can be transformed as argvs, 
 
    ```Bash
-   python ./test.py skip_gram word_dict
+   python ./test.py word_dict skip_gram
    ```
 
    and "skip_gram" and "word_dict" are default argvs. 
@@ -172,7 +172,7 @@
    python ./test.py
    ```
 
-##### References
+#### References
 
 + Word2Vec Resources http://mccormickml.com/2016/04/27/word2vec-resources/
 

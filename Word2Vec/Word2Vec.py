@@ -25,7 +25,7 @@ class Word2Vec():
         lr:          learning rate
         neg_cnt:     number of negative samples for one x
         outfile:     filename of output trained skip gram model 
-        dicfile:     filename of word dict for storing word dict
+        dictfile:    filename of word dict for storing word dict
     """
 
     def __init__(self, filename='./text8.zip', word_num=200, 
@@ -60,7 +60,7 @@ class Word2Vec():
         self.optimizer = optim.SGD(self.skip_gram.parameters(), lr=self.lr)
         
     def train(self):
-        """Start train the model and embedding"""
+        """Start training the model and embedding"""
         batch_num = len(self.dataset.data)-2*self.skip_window
         bar = tqdm(range(self.epoch * batch_num))
         for i in bar:

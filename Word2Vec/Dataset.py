@@ -5,7 +5,7 @@ import random
 
 
 class Dataset:
-    """Do some management of training data
+    """Do some managements of training data
     
     Attributes:
         words:         all the words in training file
@@ -37,7 +37,7 @@ class Dataset:
         self.build_sample_table()
     
     def build_dataset(self):
-        """Build the dataset and get words, coutn, word_dict and rev_word_dict"""
+        """Build the dataset and get words, count, word_dict and rev_word_dict"""
         print('building dataset ... ...')
         # read words from zip file
         print('\t reading words ... ...')

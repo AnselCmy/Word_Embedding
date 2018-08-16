@@ -2,6 +2,71 @@
 
 ### Chen Mingyang / Oct. 16 2018
 
+#### Basics 
+
++ In this GloVe model, there are some notation,
+
+  | Notation | Explanation                                                  |
+  | -------- | ------------------------------------------------------------ |
+  | $X$      | matrix of word-word co-occurrence counts                     |
+  | $X_{ij}$ | the number of times word $j$ occurs in the context of word   |
+  | $X_i$    | $=\sum_{k}X_{ik}$, the number of times any word appears in the context of word i |
+  | $P_{ij}$ | $ = P(i|j) = X_{ij} / X_i$, the probability that word j appear in the context of word i |
+
++ For words $k$ related to $ice$ but not $steam$, say $k = solid$, we expect the ratio $P_{ik}/P_{jk}$ will be large and vice versa. The following table confirms the expectations.
+
+  <img src='../doc_img/glove_1.png' width='80%'>
+
+  So appropriate starting point for word vector learning should be with **ratios of co-occurrence probabilities** rather than the probabilities themselves.
+
++ The general model takes the form, where $w$ is the word vector and $\tilde{w}$ is the context word vector 
+  $$
+  F(w_i, w_j, \tilde{{w}_k}) = \frac{P_{ik}}{P_{jk}} \tag{1}
+  $$
+  Since vector spaces are inherently **linear structures**, then modifying Eqn. (1) to   
+  $$
+  F(w_i - w_j, \tilde{{w}_k}) = \frac{P_{ik}}{P_{jk}} \tag{2}
+  $$
+  For not to obfuscate the **linear structure** we are trying to capture, the take the dot product, 
+  $$
+  F((w_i - w_j)^{T}\tilde{{w}_k}) = \frac{P_{ik}}{P_{jk}} \tag{3}
+  $$
+  We want $F$ be **homomorphism**, so 
+  $$
+  F((w_i - w_j)^{T}\tilde{{w}_k}) = \frac{F(w_i^{T} \tilde{{w}_k})} {F(w_j^{T} \tilde{{w}_k})} \tag{4}
+  $$
+  From Eqn.3 
+  $$
+  {F(w_i^{T} \tilde{{w}_k})} = P_{ik} = \frac{X_{ik}}{X_i} \tag{5}
+  $$
+  The solution for Eqn. (4) is $F = \mathrm{exp}​$, or 
+  $$
+  w_i^{T} \tilde{{w}_k} = log(X_{ik})-log({X_i}) \tag{6}
+  $$
+  The term $log(X_i)$ is **independent** of $k$ and be absorbed into bias $b_i$ for $wi$, for **symmetry**, we alos add a bias $\tilde{b}_k$, so we have
+  $$
+  w_i^{T} \tilde{{w}_k} + b_i+ \tilde{b}_k= log(X_{ik}) \tag{7}
+  $$
+  Naturally, the **cost function** is 
+  $$
+  J = \sum \limits_{i, j}^{V} f(x_{ij})(w_i^{T} \tilde{{w}_k} + b_i+ \tilde{b}_k - log(X_{ik}))^{2} \tag{8}
+  $$
+  where $V$ is the size of vocabulary and $f(x_{ij})$ is a **weighting funtion** 
+  $$
+  \begin{equation}
+  f(x) = 
+  \left\{
+               \begin{array}{lr}
+               (x / x_{max})^{\alpha} & if \ x < x_{max} \\
+               1 & \mathrm{otherwise}\\
+               \end{array}
+  \right.
+  \end{equation}\tag{9}
+  $$
+  <img src='../doc_img/glove_2.png' width='40%'>
+
+
+
  #### Implementation
 
 1. Dataset

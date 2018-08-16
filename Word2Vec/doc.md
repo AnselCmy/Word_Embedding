@@ -2,6 +2,28 @@
 
 ### Chen Mingyang / Oct. 8 2018
 
+#### Basics
+
++ The size of skip window
+
+  <img src='../doc_img/w2v_1.png' width='50%'>
+
++ The architecture of neural network for Word2Vec
+
+  <img src='../doc_img/w2v_2.png' width='70%'>
+
++ The training sets are word pairs, the training input and output are words encoded by one-hot vectors. But when you evaluate the trained network on an input word, the output vector will actually be a **probability distribution**.
+
++ The hidden layer of this model is really just operating as a **lookup table**.
+
++ Each output neuron has a weight vector which it multiplies against the word vector from the hidden layer.
+
++ If two words have similar contexts, then our network is motivated to learn similar word vectors for these two words.
+
++ With negative sampling, we are instead going to randomly select just a small number of “negative” words to update the weights for (a “negative” word is one for which we want the network to output a 0 for).
+
++ The target is $ log\sigma(v_c⋅v_w) + \sum_{w_j \in W_{negative}} log \sigma (−v_{wj}⋅v_c) $, where $(v_c, v_w)$ is the word pair.
+
 #### Implementation
 
 1. Dataset

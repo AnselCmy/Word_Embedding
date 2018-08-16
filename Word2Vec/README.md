@@ -1,3 +1,5 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 ## Skip-gram with Negative Sampling by PyTorch
 
 ### Chen Mingyang / Oct. 8 2018
